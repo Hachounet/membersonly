@@ -1,7 +1,8 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const queries = require("./queries");
-const { validPassword } = require("../lib/passwordUtils");
+const bcrypt = require("bcryptjs");
+const { validPassword } = require("../lib/passwordUtils.js");
 
 const customFields = {
   usernameField: "uname",
@@ -10,18 +11,20 @@ const customFields = {
 
 const verifyCallback = async (username, password, done) => {
   try {
+    console.log(username);
     const result = await queries.findUser(username);
-
+    console.log("THIS IS IT", result);
     if (result.length === 0) {
-      return done(null, false);
+      return done(null, false, { message: "Incorrect username" });
     }
     const user = result[0];
-    const isValid = validPassword(password, user.hash, user.salt);
+    console.log(user);
+    const match = await bcrypt.compare(password, user.hash);
 
-    if (isValid) {
+    if (match) {
       return done(null, user);
     } else {
-      return done(null, false);
+      return done(null, false, { message: "Incorrect password" });
     }
   } catch (err) {
     return done(err);
@@ -38,6 +41,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (userId, done) => {
   try {
+    console.log(userId);
     const result = await queries.findUserById(userId);
 
     if (result.length === 0) {

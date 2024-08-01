@@ -1,3 +1,126 @@
-h1 {
-  color: red;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.oswald-400 {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  height: 100vh;
+  background-color: rgb(235, 218, 218);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-just-cont-center {
+  justify-content: center;
+}
+
+.flex-just-cont-sp-ar {
+  justify-content: space-around;
+}
+
+.flex-al-it-center {
+  align-items: center;
+}
+
+.flex-dir-col {
+  flex-direction: column;
+}
+
+.gap5 {
+  gap: 3rem;
+}
+
+.gap05 {
+  gap: 0.5rem;
+}
+
+.landing-title {
+  color: rgb(240, 240, 240);
+}
+
+.log-sign-container {
+  background-color: rgb(129, 101, 78);
+  border-radius: 10px;
+
+  width: 30%;
+  height: 70%;
+}
+
+.nav-container {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(129, 101, 78);
+}
+
+.app-container {
+  height: 100%;
+}
+
+.send-message-container {
+  position: absolute;
+  bottom: 20px;
+}
+
+.messages-container {
+  border: 1px solid black;
+  width: 70%;
+  height: 87%;
+  overflow: scroll;
+  padding: 2rem;
+}
+
+.messages {
+  background-color: antiquewhite;
+  width: fit-content;
+  padding: 0.5rem 0.5rem;
+  border-radius: 10px;
+  list-style: none;
+}
+
+.author {
+  background-color: bisque;
+  border-radius: 10px;
+}
+
+.title-message {
+  font-weight: 900;
+}
+
+.link {
+  font-family: "Oswald";
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: rgb(240, 209, 209);
+}
+
+.prim-text-color {
+  color: rgb(253, 214, 214);
+}
+
+.input-log-sign {
+  background-color: rgba(255, 255, 255, 0.719);
+}
+
+.input-log-btn {
+  margin-top: 0.5rem;
+  padding: 0.75rem 2rem;
+  background-color: rgb(184, 132, 85);
+  border-radius: 10px;
+  border: 0px;
+  font-size: 1rem;
+}
+
+.input-log-btn:hover {
+  scale: 0.9;
+  cursor: pointer;
 }

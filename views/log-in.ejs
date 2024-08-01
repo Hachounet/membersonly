@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs") %>
+  </head>
+  <body class="flex flex-just-cont-center flex-al-it-center flex-dir-col">
+    <div
+      class="flex flex-just-cont-center flex-al-it-center flex-dir-col gap5 log-sign-container"
+    >
+      <h1 class="landing-title oswald-400"><%= title %></h1>
+      <div class="flex flex-just-cont-center flex-al-it-center flex-dir-col">
+        <form
+          action="/log-in"
+          method="POST"
+          class="flex flex-just-cont-center flex-al-it-center flex-dir-col gap05 oswald-400"
+        >
+          <label class="prim-text-color" for="uname">Username/Pseudo:</label>
+          <input class="input-log-sign" type="text" name="uname" />
+
+          <label class="prim-text-color" for="pw">Password:</label>
+          <input class="input-log-sign" type="password" name="pw" />
+
+          <button class="input-log-btn" type="submit">
+            <span class="prim-text-color oswald-400"><%= title %></span>
+          </button>
+        </form>
+        <% if (errors.length) { %>
+          <ul>
+              <% errors.forEach((error) => { %>
+              <li><%= error.msg %></li>
+              <% }) %>
+          </ul>
+     <% } %>
+      </div>
+    </div>
+  </body>
+</html>

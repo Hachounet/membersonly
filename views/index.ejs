@@ -3,8 +3,16 @@
   <head>
     <%- include("./partials/head.ejs") %>
   </head>
-  <body>
-    <h1>bgoagdao</h1>
-    Landing Page !
+  <body class="flex flex-just-cont-center flex-al-it-center flex-dir-col">
+    <div
+      class="flex flex-just-cont-center flex-al-it-center flex-dir-col gap5 log-sign-container"
+    >
+      <h1 class="landing-title oswald-400">Private members app</h1>
+      <div class="flex flex-just-cont-center flex-al-it-center flex-dir-col">
+        <a class="link" href="/log-in">Login</a>
+        <a class="link" href="/sign-up">Sign up</a>
+        <a class="link" href="/home">Visit as guest</a>
+      </div>
+    </div>
   </body>
 </html>

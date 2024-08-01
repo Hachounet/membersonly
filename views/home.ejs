@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs") %>
+  </head>
+  <body class="flex flex-dir-col">
+    <%- include("./partials/navbar.ejs") %>
+    <div class="flex flex-al-it-center flex-dir-col app-container">
+      <h1 class="landing-title oswald-400"><%= title %></h1>
+
+      <div class="messages-container">
+        <ul class="flex flex-dir-col gap05">
+          
+
+          <% messages.forEach((message) => { %>
+            <li class="flex gap05">
+              <span class="author flex flex-just-cont-center flex-al-it-center flex-dir-col"><span> <%= message.username %></span> <span><%= message.date %></span></span>
+              <span class="messages"><span class="title-message"><%= message.title %> :</span> <%= message.text %></span>
+              <% if (isAdmin) { %>
+                <form action="/home-delete" method="POST">
+                  <input type="hidden" name="messageId" value="<%= message.id %>">
+                  <button type="submit">Delete this message</button>
+                </form>
+                
+              <% } %>
+             
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+
+
+      <% if (isAuth){ %> 
+        <div class="send-message-container">
+          <form action="/home" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" name="title" placeholder="Title of message">
+            <label for="newmessage">New message:</label>
+            <input type="text" placeholder="Leave your message here" name="newmessage" />
+            <button>Send</button>
+          </form>
+        </div>
+      <% } %>
+      
+    </div>
+  </body>
+</html>

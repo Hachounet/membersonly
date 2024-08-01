@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs") %>
+  </head>
+  <body class="flex flex-just-cont-center flex-al-it-center flex-dir-col">
+    <div
+      class="flex flex-just-cont-center flex-al-it-center flex-dir-col gap5 log-sign-container"
+    >
+      <h1 class="landing-title oswald-400"><%= title %></h1>
+      <div class="flex flex-just-cont-center flex-al-it-center flex-dir-col">
+        <form
+        method="POST"
+          action="/sign-up"
+          class="flex flex-just-cont-center flex-al-it-center flex-dir-col gap05 oswald-400"
+        >
+          <label class="prim-text-color" for="uname">Username/Pseudo:</label>
+          <input class="input-log-sign" type="text" name="uname" />
+          <label class="prim-text-color" for="firstname">Firstname:</label>
+          <input class="input-log-sign" type="text" name="firstname" />
+          <label class="prim-text-color" for="lastname">Lastname:</label>
+          <input class="input-log-sign" type="text" name="lastname" />
+          <label class="prim-text-color" or="password">Password:</label>
+          <input class="input-log-sign" type="password" name="password" />
+          <label class="prim-text-color" for="confpassword"
+            >Confirm password:</label
+          >
+          <input class="input-log-sign" type="password" name="confpassword" />
+          <button class="input-log-btn" type="submit">
+            <span class="prim-text-color oswald-400"><%= title %></span>
+          </button>
+        </form>
+        <% if (errors.length) { %>
+            <ul>
+                <% errors.forEach((error) => { %>
+                <li><%= error.msg %></li>
+                <% }) %>
+            </ul>
+       <% } %>
+      </div>
+    </div>
+  </body>
+</html>

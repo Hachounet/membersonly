@@ -1,7 +1,31 @@
 require("dotenv").config();
 const { Client } = require("pg");
 
-const SQL = `CREATE TABLE IF NOT EXISTS users (id SERIAL4 PRIMARY KEY, firstname varchar(100), lastname varchar(100), username varchar(50), hash varchar(255), salt varchar(255), membership boolean, admin boolean`;
+const SQL = `CREATE TABLE IF NOT EXISTS users (
+  id SERIAL4 PRIMARY KEY,
+  firstname VARCHAR(100),
+  lastname VARCHAR(100),
+  username VARCHAR(50),
+  hash VARCHAR(255),
+  membership BOOLEAN,
+  admin BOOLEAN
+);
+
+CREATE TABLE IF NOT EXISTS messages (
+  id SERIAL4 PRIMARY KEY,
+  title VARCHAR(100),
+  date DATE,
+  text VARCHAR(255),
+  author INTEGER,
+  FOREIGN KEY (author) REFERENCES users(id) ON DELETE CASCADE
+);
+
+INSERT INTO messages (title, date, text, author) 
+VALUES ('First message', '2024-08-01', 'This is first message of this private clubhouse!', 2);
+
+INSERT INTO messages(title, date, text, author)
+VALUES ('Hello !', '2024-08-01', 'Hey, darkAngel is here !', 3)
+`;
 
 async function main() {
   console.log("Seeding...");

@@ -1,0 +1,21 @@
+<nav
+  class="nav-container flex flex-al-it-center flex-just-cont-center oswald-400 gap5"
+>
+  <a class="link" href="/admin-log-in">Admin page</a>
+
+    <% if (isAuth) {%>
+        <a class="link" href="/log-out">Log out</a>
+    <% } %>
+    <% if(!isAuth) { %>
+        <a class="link" href="/sign-up">Sign up</a>
+        <a class="link" href="/log-in">Log in</a>
+    <% } %>
+
+ 
+
+  <% if (isAuth){ %>
+    <a class="link" href="/joinclub">Join club</a>
+    <a class="link" href="/admin">Admin log</a>
+    <%} %>
+  
+</nav>
