@@ -140,9 +140,14 @@ exports.getHomePage = asyncHandler(async (req, res, next) => {
     const result = await queries.getAllMessages();
 
     result.forEach((message) => {
-      message.date = DateTime.fromJSDate(message.date).toLocaleString(
-        DateTime.DATETIME_FULL,
-      );
+      const dateTime = DateTime.fromJSDate(new Date(message.date));
+
+      if (dateTime.isValid) {
+        message.date = dateTime.toLocaleString(DateTime.DATE_MED); // Only format the date part
+      } else {
+        console.error("Invalid date encountered:", message.date);
+        message.date = "Invalid Date";
+      }
     });
     if (!req.body.isAuth || req.user.membership === false) {
       result.forEach((message) => {
@@ -168,7 +173,8 @@ exports.getHomePage = asyncHandler(async (req, res, next) => {
 
 exports.postHomePage = asyncHandler(async (req, res, next) => {
   try {
-    const newDate = DateTime.now().toLocaleString(DateTime.DATETIME_FULL);
+    const newDate = DateTime.now().toISODate();
+    console.log(newDate);
     await pool.query(
       "INSERT INTO messages (title, date, text, author) VALUES ($1, $2, $3, $4) ",
       [req.body.title, newDate, req.body.newmessage, req.user.id],

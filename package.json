@@ -9,7 +9,7 @@
     "lint:check": "eslint .",
     "lint:fix": "eslint --fix .",
     "start": "node app.js",
-    "devstart": "nodemon ./bin/www",
+    "devstart": "NODE_ENV=development nodemon ./bin/www",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart"
   },
   "keywords": [],
