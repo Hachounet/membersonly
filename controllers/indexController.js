@@ -140,7 +140,9 @@ exports.getHomePage = asyncHandler(async (req, res, next) => {
     const result = await queries.getAllMessages();
 
     result.forEach((message) => {
-      message.date = message.date.toLocaleString(DateTime.DATETIME_FULL);
+      message.date = DateTime.fromJSDate(message.date).toLocaleString(
+        DateTime.DATETIME_FULL,
+      );
     });
     if (!req.body.isAuth || req.user.membership === false) {
       result.forEach((message) => {
@@ -166,7 +168,7 @@ exports.getHomePage = asyncHandler(async (req, res, next) => {
 
 exports.postHomePage = asyncHandler(async (req, res, next) => {
   try {
-    const newDate = new Date().toLocaleString(DateTime.DATETIME_FULL);
+    const newDate = DateTime.now().toLocaleString(DateTime.DATETIME_FULL);
     await pool.query(
       "INSERT INTO messages (title, date, text, author) VALUES ($1, $2, $3, $4) ",
       [req.body.title, newDate, req.body.newmessage, req.user.id],
