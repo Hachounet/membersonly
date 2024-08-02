@@ -11,6 +11,7 @@ const SQL = `CREATE TABLE IF NOT EXISTS users (
   admin BOOLEAN
 );
 
+
 CREATE TABLE IF NOT EXISTS messages (
   id SERIAL4 PRIMARY KEY,
   title VARCHAR(100),
@@ -20,11 +21,6 @@ CREATE TABLE IF NOT EXISTS messages (
   FOREIGN KEY (author) REFERENCES users(id) ON DELETE CASCADE
 );
 
-INSERT INTO messages (title, date, text, author) 
-VALUES ('First message', '2024-08-01', 'This is first message of this private clubhouse!', 2);
-
-INSERT INTO messages(title, date, text, author)
-VALUES ('Hello !', '2024-08-01', 'Hey, darkAngel is here !', 3)
 `;
 
 async function main() {
